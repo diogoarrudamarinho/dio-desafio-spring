@@ -1,5 +1,6 @@
 package com.project_dio.bank.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
@@ -26,16 +27,18 @@ public class User {
     private Account account;
 
     @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
-    private Feature[] features;
+    private List<Feature> features;
 
     @OneToOne(cascade= CascadeType.ALL)
     private Card card;
-    private News[] news;
+
+    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
+    private List<News> news;
 
     public User(){
     }
 
-    public User(Long id, String name, Account account, Feature[] features, Card card, News[] news) {
+    public User(Long id, String name, Account account, List<Feature> features, Card card, List<News> news) {
         this.id = id;
         this.name = name;
         this.account = account;
@@ -60,11 +63,11 @@ public class User {
         this.account = account;
     }
 
-    public Feature[] getFeatures() {
+    public List<Feature> getFeatures() {
         return features;
     }
 
-    public void setFeatures(Feature[] features) {
+    public void setFeatures(List<Feature> features) {
         this.features = features;
     }
 
@@ -76,11 +79,11 @@ public class User {
         this.card = card;
     }
 
-    public News[] getNews() {
+    public List<News> getNews() {
         return news;
     }
 
-    public void setNews(News[] news) {
+    public void setNews(List<News> news) {
         this.news = news;
     }
 
