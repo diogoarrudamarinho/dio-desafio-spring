@@ -2,34 +2,27 @@ package com.project_dio.bank.entities;
 
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "tb_card")
-public class Card {
+@MappedSuperclass
+public abstract class BaseItem {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String icon;
+    private String description;
 
-    @Column(unique= true)
-    private String number;
-    
-    @Column(name="availavle_limit")
-    private Number limit;
-
-    public Card(){
+    public BaseItem(){
     }
 
-    public Card(Long id, String number, Number limit) {
+    public BaseItem(Long id, String icon, String description) {
         this.id = id;
-        this.number = number;
-        this.limit = limit;
+        this.icon = icon;
+        this.description = description;
     }
 
     public Long getId() {
@@ -40,20 +33,20 @@ public class Card {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
-    public Number getLimit() {
-        return limit;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLimit(Number limit) {
-        this.limit = limit;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -69,8 +62,7 @@ public class Card {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Card other = (Card) obj;
+        BaseItem other = (BaseItem) obj;
         return Objects.equals(id, other.id);
     }
-
 }

@@ -2,6 +2,7 @@ package com.project_dio.bank.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +16,14 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique= true)
     private String number;
+
     private String agency;
     private Number balance;
+
+    @Column(name="aditional_limit")
     private Number limit;
 
     public Account(){

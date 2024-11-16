@@ -2,10 +2,14 @@ package com.project_dio.bank.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,9 +19,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @OneToOne(cascade= CascadeType.ALL)
     private Account account;
+
+    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
     private Feature[] features;
+
+    @OneToOne(cascade= CascadeType.ALL)
     private Card card;
     private News[] news;
 
