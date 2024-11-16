@@ -47,6 +47,14 @@ public class User {
         this.news = news;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -103,7 +111,5 @@ public class User {
         User other = (User) obj;
         return Objects.equals(id, other.id);
     }
-
-    
     
 }
