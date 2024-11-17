@@ -1,10 +1,10 @@
 package com.project_dio.bank.services;
 
-import com.project_dio.bank.entities.User;
+import com.project_dio.bank.dto.UserDTO;
 
 public interface UserService {
     
-    User findById (Long id);
+    UserDTO findById (Long id);
 
-    User create(User newUser);
+    UserDTO create(UserDTO newUser);
 }

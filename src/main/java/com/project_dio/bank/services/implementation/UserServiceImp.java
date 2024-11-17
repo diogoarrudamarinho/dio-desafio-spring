@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project_dio.bank.entities.User;
+import com.project_dio.bank.dto.UserDTO;
 import com.project_dio.bank.repositories.UserRepository;
 import com.project_dio.bank.services.UserService;
 
@@ -20,12 +20,12 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User findById(Long id) {
+    public UserDTO findById(Long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
-    public User create(User newUser) {
+    public UserDTO create(UserDTO newUser) {
         if (newUser.getId() != null && userRepository.existsById(newUser.getId()))
             throw new IllegalArgumentException("User ID already exists");
 
